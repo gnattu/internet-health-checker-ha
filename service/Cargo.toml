@@ -1,0 +1,23 @@
+[package]
+name = "internet-health-checker"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.8.4", features = ["json"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time", "signal"] }
+reqwest = { version = "0.12.23", default-features = false, features = ["rustls-tls", "socks"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter"] }
+chrono = { version = "0.4", features = ["clock", "serde"] }
+parking_lot = "0.12"
+rumqttc = { version = "0.25.0", default-features = false, features = ["use-rustls"] }
+rand = "0.9.2"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "z"
+panic = "abort"

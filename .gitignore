@@ -1,0 +1,34 @@
+# Rust build artifacts
+**/target/
+**/*.rs.bk
+
+# Binaries (general)
+**/*.exe
+**/*.dll
+**/*.so
+**/*.dylib
+**/*.a
+**/*.lib
+
+# Logs & profiling
+**/*.log
+**/*.profraw
+coverage/
+
+# IDE/editor settings
+.idea/
+.vscode/
+**/*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.*
+
+# Common build folders
+node_modules/
+dist/
+build/

@@ -1,0 +1,51 @@
+name: Internet Health Checker
+slug: internet_health_checker
+description: Periodically checks public Internet health and exposes REST + MQTT sensors for Home Assistant.
+version: 0.1.0
+stage: experimental
+arch:
+  - amd64
+  - aarch64
+  - armv7
+startup: services
+init: false
+image: ghcr.io/gnattu/internet_health_checker-{arch}
+ports:
+  8000/tcp: 8000
+ingress: false
+homeassistant_api: false
+host_network: false
+options:
+  interval: 30
+  timeout: 5000
+  degraded_latency_ms: 750
+  window: 10
+  links_json: "[ {\"name\": \"wan1\", \"socks5\": \"socks5h://wan1-proxy:1080\" } ]"
+  targets_json: "[ \"https://www.google.com/generate_204\", \"https://cp.cloudflare.com/generate_204\" ]"
+  mqtt_host: "core-mosquitto"
+  mqtt_port: 1883
+  mqtt_username: ""
+  mqtt_password: ""
+  mqtt_base_topic: "home/internet_health"
+  mqtt_discovery: true
+  mqtt_qos: 1
+  mqtt_retain: true
+  burst_count: 2
+  burst_interval_ms: 5000
+schema:
+  interval: int(5, 300)
+  timeout: int(1000, 30000)
+  degraded_latency_ms: int(100, 60000)
+  window: int(3, 200)
+  links_json: str
+  targets_json: str
+  mqtt_host: str?
+  mqtt_port: int(1, 65535)?
+  mqtt_username: str?
+  mqtt_password: password?
+  mqtt_base_topic: str?
+  mqtt_discovery: bool?
+  mqtt_qos: int(0, 2)?
+  mqtt_retain: bool?
+  burst_count: int(0, 10)?
+  burst_interval_ms: int(100, 60000)?

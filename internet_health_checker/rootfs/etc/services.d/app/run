@@ -1,0 +1,41 @@
+#!/usr/bin/with-contenv bashio
+set -euo pipefail
+
+INTERVAL=$(bashio::config 'interval')
+TIMEOUT=$(bashio::config 'timeout')
+LATENCY=$(bashio::config 'degraded_latency_ms')
+WINDOW=$(bashio::config 'window')
+LINKS_JSON=$(bashio::config 'links_json')
+TARGETS_JSON=$(bashio::config 'targets_json')
+MQTT_HOST=$(bashio::config 'mqtt_host')
+MQTT_PORT=$(bashio::config 'mqtt_port')
+MQTT_USERNAME=$(bashio::config 'mqtt_username')
+MQTT_PASSWORD=$(bashio::config 'mqtt_password')
+MQTT_BASE_TOPIC=$(bashio::config 'mqtt_base_topic')
+MQTT_DISCOVERY=$(bashio::config 'mqtt_discovery')
+MQTT_QOS=$(bashio::config 'mqtt_qos')
+MQTT_RETAIN=$(bashio::config 'mqtt_retain')
+BURST_COUNT=$(bashio::config 'burst_count')
+BURST_INTERVAL_MS=$(bashio::config 'burst_interval_ms')
+
+export INTERVAL_SECS="${INTERVAL}"
+export REQUEST_TIMEOUT_MS="${TIMEOUT}"
+export DEGRADED_LATENCY_MS="${LATENCY}"
+export WINDOW_SIZE="${WINDOW}"
+export PORT=8000
+export LINKS_JSON="${LINKS_JSON}"
+export TARGETS_JSON="${TARGETS_JSON}"
+if [[ -n "${MQTT_HOST}" ]]; then
+  export MQTT_HOST="${MQTT_HOST}"
+  export MQTT_PORT="${MQTT_PORT:-1883}"
+  if [[ -n "${MQTT_USERNAME}" ]]; then export MQTT_USERNAME="${MQTT_USERNAME}"; fi
+  if [[ -n "${MQTT_PASSWORD}" ]]; then export MQTT_PASSWORD="${MQTT_PASSWORD}"; fi
+  export MQTT_BASE_TOPIC="${MQTT_BASE_TOPIC:-home/internet_health}"
+  export MQTT_DISCOVERY="${MQTT_DISCOVERY:-true}"
+  export MQTT_QOS="${MQTT_QOS:-1}"
+  export MQTT_RETAIN="${MQTT_RETAIN:-true}"
+fi
+export BURST_COUNT="${BURST_COUNT:-2}"
+export BURST_INTERVAL_MS="${BURST_INTERVAL_MS:-5000}"
+
+exec /usr/bin/internet-health-checker
