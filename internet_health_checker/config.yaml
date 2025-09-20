@@ -33,19 +33,19 @@ options:
   burst_count: 2
   burst_interval_ms: 5000
 schema:
-  interval: int(5, 300)
-  timeout: int(1000, 30000)
-  degraded_latency_ms: int(100, 60000)
-  window: int(3, 200)
+  interval: int(5,300)
+  timeout: int(1000,30000)
+  degraded_latency_ms: int(100,60000)
+  window: int(3,200)
   links_json: str
   targets_json: str
   mqtt_host: str?
-  mqtt_port: int(1, 65535)?
+  mqtt_port: int(1,65535)?
   mqtt_username: str?
   mqtt_password: password?
   mqtt_base_topic: str?
   mqtt_discovery: bool?
-  mqtt_qos: int(0, 2)?
+  mqtt_qos: int(0,2)?
   mqtt_retain: bool?
-  burst_count: int(0, 10)?
-  burst_interval_ms: int(100, 60000)?
+  burst_count: int(0,10)?
+  burst_interval_ms: int(100,60000)?
