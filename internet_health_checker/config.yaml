@@ -1,7 +1,7 @@
 name: Internet Health Checker
 slug: internet_health_checker
 description: Periodically checks public Internet health and exposes REST + MQTT sensors for Home Assistant.
-version: 0.1.5
+version: 0.1.6
 stage: experimental
 arch:
   - amd64
