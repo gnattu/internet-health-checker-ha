@@ -7,8 +7,8 @@ ARG TARGETOS
 ARG TARGETARCH
 ARG TARGETVARIANT
 
-# Build stage
-FROM --platform=$BUILDPLATFORM rust:1.90.0-trixie as build
+# Build stage: compile natively for the target platform (avoids wrong-arch binaries)
+FROM --platform=$TARGETPLATFORM rust:1.90.0-trixie as build
 WORKDIR /app
 
 # Cache dependencies
