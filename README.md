@@ -80,5 +80,5 @@ Optionally, create a template sensor with icon/colors based on state.
 - The included GitHub Actions workflow builds and pushes per-arch images when you push a tag (e.g., `v0.1.0`).
 
 Manual build (optional):
-- `docker build -t internet-health -f internet_health_checker/Dockerfile --build-arg BUILD_FROM=ghcr.io/home-assistant/amd64-addon-base:latest .`
+- `docker build -t internet-health -f internet_health_checker/Dockerfile --build-arg BUILD_FROM=ghcr.io/home-assistant/arm64-base-debian:trixie .`
 - `docker run -p 8000:8000 internet-health`

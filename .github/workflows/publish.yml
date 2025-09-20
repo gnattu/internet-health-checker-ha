@@ -19,13 +19,13 @@ jobs:
         include:
           - arch: amd64
             platform: linux/amd64
-            base: ghcr.io/home-assistant/amd64-addon-base:latest
+            base: ghcr.io/home-assistant/amd64-base-debian:trixie
           - arch: aarch64
             platform: linux/arm64
-            base: ghcr.io/home-assistant/aarch64-addon-base:latest
+            base: ghcr.io/home-assistant/aarch64-base-debian:trixie
           - arch: armv7
             platform: linux/arm/v7
-            base: ghcr.io/home-assistant/armv7-addon-base:latest
+            base: ghcr.io/home-assistant/armv7-base-debian:trixie
 
     steps:
       - name: Checkout
