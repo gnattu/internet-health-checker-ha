@@ -6,7 +6,6 @@ stage: experimental
 arch:
   - amd64
   - aarch64
-  - armv7
 startup: services
 init: false
 image: ghcr.io/gnattu/internet_health_checker-{arch}
