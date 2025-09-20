@@ -8,7 +8,7 @@ ARG TARGETARCH
 ARG TARGETVARIANT
 
 # Build stage
-FROM --platform=$BUILDPLATFORM rust:1.80-bullseye as build
+FROM --platform=$BUILDPLATFORM rust:1.90.0-trixie as build
 WORKDIR /app
 
 # Cache dependencies
